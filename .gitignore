@@ -1,0 +1,23 @@
+# directories...
+Electron
+QtProject.conf
+btop
+dconf
+discord
+epiphany
+evolution
+gnome-session
+go
+goa-1.0
+gtk-3.0
+ibus
+nautilus
+obs-studio
+pulse
+totem
+user-dirs.dirs
+user-dirs.locale
+yay
+.gsd*
+
+# misc

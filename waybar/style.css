@@ -1,0 +1,67 @@
+/* general */
+*{
+	min-height: 0;
+	border-radius: 0;
+	padding: 0px 2px 0px 2px;
+	font-size: 13px;
+	color: white;
+}
+
+button:hover{
+	  box-shadow: none;
+	  text-shadow: none;
+	  background: none;   
+	  transition: none;
+	  border-radius: 5px;
+}
+
+#clock{	
+	font-size: 15px;
+	margin: 0 0 1px 0;
+}
+
+/* main bar */
+window#waybar{
+	background-color: rgba(50,60,90,0.7);
+	margin: 0 3px 0 3px;
+}
+
+/* windows */
+#window {	
+	min-width: 0;
+}
+
+/* workspaces */
+#workspaces button{
+	min-width: 12px;
+	padding: 5px 9px 5px 5px;
+	margin: 2px 1px 2px 1px;
+}
+
+#workspaces button.hover{
+	background-color: black;
+}
+
+#workspaces button.active{
+	background-color: rgba(30,40,50,1);
+	border-radius: 5px;
+}
+
+/* group styling */
+.modules-left,
+.modules-center,
+.modules-right{
+	padding: 3px;
+}
+
+/* custom stuff */
+/* used to provide breaks in between each module */
+#custom-pipebreak{
+	font-size: 13px;
+	margin: 1px 0 0 0;
+}
+
+#custom-power{
+	font-size: 12px;
+	margin: 0 0 2px 0;
+}
