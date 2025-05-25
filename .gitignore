@@ -19,5 +19,7 @@ user-dirs.dirs
 user-dirs.locale
 yay
 .gsd*
+Code
 
-# misc
+# temporary until i get a good config going. this might take a bit.
+nvim
