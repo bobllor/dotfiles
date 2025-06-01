@@ -24,7 +24,7 @@ const getIcon = (status: number, strength: number) => {
 function NetworkInfo(): JSX.Element{
     const bindings = Variable.derive(
         [bind(NETWORK, "wifi"), bind(NETWORK, "connectivity")],
-        (wifi, con) => {{
+        (wifi, con) => {
             // handles updating the network.
             if(con == 1 || con == 0){
                 currentSSID.set('None');
@@ -40,7 +40,7 @@ function NetworkInfo(): JSX.Element{
                     <label>{currentSSID.get()}</label>
                 </>
             )
-        }}
+        }
     )
 
     return (

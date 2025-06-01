@@ -12,7 +12,9 @@ export default function RightSideMenu(monitor: Gdk.Monitor, showMenu: Variable<b
         gdkmonitor={monitor}
         anchor={TOP | RIGHT}
         visible={showMenu()}>
-            <box className={"right-menu"}>
+            <box 
+            orientation={1}
+            className={"right-menu"}>
                 <Networking />
                 <AccessPoints />
             </box>
