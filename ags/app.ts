@@ -1,7 +1,7 @@
 import { App } from "astal/gtk3"
 import style from "./style.scss"
-import Bar from "./windows/Bar"
-import PowerMenu from "./windows/PowerMenu"
+import Bar from "./src/windows/Bar"
+import RightSideMenu from "./src/windows/RightSideMenu"
 import { showMenu } from "./globals/vars"
 
 App.start({
@@ -10,6 +10,6 @@ App.start({
         const monitors = App.get_monitors();
                 
         Bar(monitors[0]);
-        PowerMenu(monitors[0], showMenu);
+        RightSideMenu(monitors[0], showMenu);
     },
 })
