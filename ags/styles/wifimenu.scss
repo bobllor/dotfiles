@@ -1,0 +1,50 @@
+.waps-box{
+    padding: 1px;
+    background-color: rgba(100,100,100,1);
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+    .ap-is-active{
+        background-color: rgba(200,200,200,.3)
+    }
+
+    button{
+        all: unset;
+        border-radius: 5px;
+    }
+
+    button:hover{
+        background-color: rgba(0,150,90,.5);
+    }
+
+    button.ap-option{
+        min-height: 60px;
+        min-width: 300px;
+        padding: 3px;
+    }
+
+    revealer.ap-option-con{
+        padding: 0 5px 10px 5px;
+    }
+
+    .ap-option-no-hover:hover{
+        background-color: rgba(0,0,0,0);
+    }
+
+    .ap-wifi-button{
+        padding: 5px;
+        border-radius: 5px;
+        min-width: 95px;
+        min-height: 30px;
+        background-color: #2596be;
+    }
+}
+
+.ap-info{
+    padding: 10px;
+
+    .ap-info-icon{
+        font-size: 1.5rem;
+    }
+}

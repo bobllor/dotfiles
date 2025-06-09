@@ -1,8 +1,13 @@
 // https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss
-@use "./styles/rightmenu.scss";
+@use "./styles/rightpanel.scss";
+@use "./styles/wifimenu.scss";
 
 $fg-color: #{"@theme_fg_color"};
 $bg-color: #{"@theme_bg_color"};
+
+window{
+    background-color: rgba(0,0,0,0);
+}
 
 window.Bar {
     background: transparent;
