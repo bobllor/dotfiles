@@ -1,6 +1,6 @@
 import { bind } from "astal";
 import { showMenu } from "./vars";
-import { selectedAP } from "../src/widgets/WifiMenu/support/vars";
+import { selectedAP } from "../src/widgets/RightPanel/support/panelVars";
 
 // to be honest i don't know if this is a good idea.
 // my main concerns are potential peformance issues, i need to ask

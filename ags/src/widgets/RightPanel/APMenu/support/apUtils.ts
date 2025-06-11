@@ -1,6 +1,7 @@
 import { exec, execAsync } from "astal"
-import { currentSSID, apPassword, selectedAP } from "./vars";
-import { isBetween } from "./utils";
+import { currentSSID, apPassword, selectedAP } from "../../support/panelVars";
+import { isBetween } from "../../support/panelUtils";
+import { notifySend } from "../../../../../globals/utils";
 
 /** Disconnects from the current wifi. */
 export function disconnectFromWifi(): void{
@@ -10,7 +11,8 @@ export function disconnectFromWifi(): void{
     if(netStat != 'none' && SSID.toLowerCase() != 'none'){
         exec(`nmcli con down "${SSID}"`);
         selectedAP.set('');
-        exec(`notify-send "Disconnected from ${SSID}."`)
+        // TODO: temporary, will make a new notification with astal
+        notifySend(`Disconnected from ${SSID}.`);
     }
 }
 
@@ -70,7 +72,7 @@ export async function connectToWifi(chosenAP: string,
 export function getIcon(status: number, strength: number): string{
     if(status == 0 || strength == 0) return "󰤯 ";
 
-    if(status == 1 || status == 2)return "󰤭 ";
+    if(status == 1 || status == 2) return "󰤭 ";
 
     if(isBetween(strength, 80, 100)){
         return "󰤨 ";

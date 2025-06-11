@@ -1,7 +1,7 @@
 import { bind, Variable, execAsync, exec } from "astal";
 import Network from "gi://AstalNetwork"
 import { Gtk, Widget } from "astal/gtk3";
-import { currentSSID, selectedAP, authFailed, displayPanel } from "./support/vars";
+import { currentSSID, selectedAP, authFailed, displayPanel } from "../support/panelVars";
 import APDisplay from "./apComponents/APDisplay";
 import { APReavealer } from "./apComponents/APRevealer";
 
@@ -27,6 +27,7 @@ function APs(): JSX.Element{
         ],
         (wifi, con, selectedButton) => {
             const ssidSet = new Set();
+
             // handles updating the network.
             if(con == 1 || con == 0){
                 currentSSID.set('None');
@@ -47,8 +48,6 @@ function APs(): JSX.Element{
                 }else{
                     return false;
                 }
-
-                // TODO: look into flags more for ap
 
                 return ap.ssid != null && ap.ssid != currentSSID.get();
             })
@@ -100,10 +99,10 @@ function APs(): JSX.Element{
     return (
         <> 
             <scrollable
-            name={"wifiPanel"}
-            heightRequest={300} widthRequest={310}>
+            heightRequest={300} widthRequest={320}>
                 <box
                 vertical
+                hexpand
                 onDestroy={() => {
                     apBind.drop();
                 }}>
@@ -117,10 +116,11 @@ function APs(): JSX.Element{
 export default function AccessPoints(): JSX.Element{
     return (
         <>
-            <stack
-            visibleChildName={bind(displayPanel).as(name => name)}>
+            <box
+            name={"wifiPanel"}
+            className={"waps-box"}>
                 <APs />
-            </stack>
+            </box>     
         </>
     )
 }   

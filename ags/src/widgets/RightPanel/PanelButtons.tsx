@@ -1,4 +1,4 @@
-import { displayPanel } from "./support/vars"
+import { displayPanel } from "./support/panelVars"
 
 export default function PanelButtons(){
     const actions: Array<{name: string, label: string}> = [

@@ -1,5 +1,5 @@
 import { connectToWifi, disconnectFromWifi } from "../support/apUtils";
-import { apPassword, currentSSID } from "../support/vars";
+import { apPassword, currentSSID } from "../../support/panelVars";
 
 export function APReavealer(ssid: string): JSX.Element{
 

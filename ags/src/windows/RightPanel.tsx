@@ -1,8 +1,10 @@
-import { Variable, } from "astal"
+import { Variable, bind } from "astal"
 import { Astal, Gdk } from "astal/gtk3"
-import AccessPoints from "../widgets/WifiMenu/AccessPoints";
-import PanelButtons from "../widgets/WifiMenu/PanelButtons";
+import AccessPoints from "../widgets/RightPanel/APMenu/AccessPoints";
+import PanelButtons from "../widgets/RightPanel/PanelButtons";
 import { anchor } from "../../globals/vars";
+import { displayPanel } from "../widgets/RightPanel/support/panelVars";
+import Notifications from "./Notification";
 
 export default function RightPanel(monitor: Gdk.Monitor, showMenu: Variable<boolean>): JSX.Element{
   return (
@@ -17,10 +19,10 @@ export default function RightPanel(monitor: Gdk.Monitor, showMenu: Variable<bool
           spacing={10}
           className={"right-panel"}>
             <PanelButtons />
-            <box
-            className={"waps-box"}>
-              <AccessPoints />
-            </box>
+              <stack
+              visibleChildName={bind(displayPanel).as(name => name)}>
+                <AccessPoints />
+              </stack>
           </box>
         </window>
     </>
