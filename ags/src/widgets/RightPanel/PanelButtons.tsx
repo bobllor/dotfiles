@@ -1,19 +1,31 @@
 import { displayPanel } from "./support/panelVars"
 
 export default function PanelButtons(){
-    const actions: Array<{name: string, label: string}> = [
-        {name: "wifiPanel", label: "Wifi"},
+    const panelElements: Array<ButtonInfo> = [
+        {name: "wifiPanel", label: "Wifi", action: () => {}, hasMenu: true},
     ]
 
     return (
         <>
-            {actions.map(action => (
-                <button
-                label={action.label}
-                name={"panel-buttons"}
-                onClick={() => displayPanel.set(action.name)}>
-                </button>
+            {panelElements.map(ele => (
+                <box className={"panel-buttons"}>
+                    <button
+                    onClick={ele.action}
+                    label={ele.label}>
+                    </button>
+                    <button
+                    onClick={() => displayPanel.set(ele.name)}>
+                        <label label={'>'}/>
+                    </button>
+                </box>
             ))}
         </>
     )
+}
+
+type ButtonInfo = {
+    name: string,
+    label: string,
+    action: () => void,
+    hasMenu: boolean
 }
