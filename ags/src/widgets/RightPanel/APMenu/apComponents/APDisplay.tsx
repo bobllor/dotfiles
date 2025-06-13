@@ -3,7 +3,7 @@ import { getIcon } from "../support/apUtils"
 import { currentSSID } from "../../support/panelVars";
 import { Gtk } from "astal/gtk3";
 
-export default function APDisplay(ssid: string, strBind: Binding<number>): JSX.Element{
+export default function APDisplay(ssid: string, strBind: Binding<number>, flag: number): JSX.Element{
     return (
         <>  
             <box
@@ -12,8 +12,8 @@ export default function APDisplay(ssid: string, strBind: Binding<number>): JSX.E
                 <label
                 className={"ap-info-icon"} 
                 label={strBind.as(str => {
-                    return getIcon(4, str);
-                })}></label>
+                    return getIcon(flag, str);
+                })} />
             </box>
             <box
             orientation={1}>

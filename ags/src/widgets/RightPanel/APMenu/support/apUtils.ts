@@ -2,6 +2,7 @@ import { exec, execAsync } from "astal"
 import { currentSSID, apPassword, selectedAP } from "../../support/panelVars";
 import { isBetween } from "../../support/panelUtils";
 import { notifySend } from "../../../../../globals/utils";
+import { openWifi, secureWifi } from "./apIcons";
 
 /** Disconnects from the current wifi. */
 export function disconnectFromWifi(): void{
@@ -49,9 +50,9 @@ export async function connectToWifi(chosenAP: string,
     /** Connect to a given wifi, this is dependent on if a password is given or not. */
     const connect = async (pw: string): Promise<void> => {
         if(pw.trim() == ''){
-            await execAsync(`nmcli d wifi connect "${chosenAP}"`)
+            await execAsync(`nmcli d wifi connect "${chosenAP}"`);
         }else if(pw != null){
-            await execAsync(`nmcli d wifi connect "${chosenAP}" password "${pw}"`)
+            await execAsync(`nmcli d wifi connect "${chosenAP}" password "${pw}"`);
         }
     }
 
@@ -69,20 +70,19 @@ export async function connectToWifi(chosenAP: string,
     }
 }
 
-export function getIcon(status: number, strength: number): string{
-    if(status == 0 || strength == 0) return "󰤯 ";
+export function getIcon(flag: number, strength: number): string{
+    const icon: string = "󰤯 ";
+    if(strength == 0) return icon;
 
-    if(status == 1 || status == 2) return "󰤭 ";
+    const wifiIcons: Map<number, string> = flag != 0 ? secureWifi : openWifi;
 
-    if(isBetween(strength, 80, 100)){
-        return "󰤨 ";
-    }else if(isBetween(strength, 60, 80)){
-        return "󰤥 ";
-    }else if(isBetween(strength, 40, 60)){
-        return "󰤢 ";
-    }else if(isBetween(strength, 1, 40)){
-        return "󰤟 ";
+    const thres: [number, number][] = [[80, 101], [55, 80], [30, 55], [1, 30]]
+
+    for(let i = 0; i < thres.length; i++){
+        if(isBetween(strength, thres[i][0], thres[i][1])){
+            return wifiIcons.get(i) ?? icon;
+        }
     }
 
-    return "󰤯 ";
+    return icon;
 }

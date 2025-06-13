@@ -48,7 +48,7 @@ function APs(): JSX.Element{
                 }else{
                     return false;
                 }
-
+                
                 return ap.ssid != null && ap.ssid != currentSSID.get();
             })
 
@@ -73,7 +73,7 @@ function APs(): JSX.Element{
                                     <box
                                     className={'ap-info'}
                                     spacing={2}>
-                                        {APDisplay(ap.ssid, bind(ap, 'strength'))}
+                                        {APDisplay(ap.ssid, bind(ap, 'strength'), ap.flags)}
                                     </box>
                                 </button>
                                 <revealer
