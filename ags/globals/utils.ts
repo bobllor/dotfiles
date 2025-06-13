@@ -1,10 +1,11 @@
-import { exec } from "astal";
+import { execAsync } from "astal";
 
 /** Send a notification. */
-export function notifySend(body: string, time: number = 3000, summary?: string): void{
+export async function notifySend(body: string, summary?: string): Promise<void>{
+    // swapped to async, issues happened with exec when i added my new notification code.
     if(summary != undefined){
-        exec(`notify-send -t ${time} "${summary}" "${body}"`);
+        await execAsync(`notify-send "${summary}" "${body}"`);
     }else{
-        exec(`notify-send -t ${time} "${body}"`);
+        await execAsync(`notify-send "" "${body}"`);
     }
 }

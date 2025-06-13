@@ -5,12 +5,12 @@ import { notifySend } from "../../../../../globals/utils";
 import { openWifi, secureWifi } from "./apIcons";
 
 /** Disconnects from the current wifi. */
-export function disconnectFromWifi(): void{
-    const netStat = exec('nmcli n con');
+export async function disconnectFromWifi(): Promise<void>{
+    const netStat = await execAsync('nmcli n con');
     const SSID = currentSSID.get();
 
     if(netStat != 'none' && SSID.toLowerCase() != 'none'){
-        exec(`nmcli con down "${SSID}"`);
+        await execAsync(`nmcli con down "${SSID}"`);
         selectedAP.set('');
         // TODO: temporary, will make a new notification with astal
         notifySend(`Disconnected from ${SSID}.`);
