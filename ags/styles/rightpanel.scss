@@ -7,4 +7,35 @@
     border: none;
     border-radius: 24px;
     padding: 20px;
+
+    button{
+        all: unset;
+        min-width: 15px;
+        padding: 8px 10px 8px 10px;
+    }
+
+    $p-icon-radius: 50px;
+    .panel-buttons{
+        background-color: darkblue;
+        padding: 3px;
+
+        .action-icon{
+            background-color: lightblue;
+            border-radius: $p-icon-radius;
+        }
+
+        .panel-button{
+            min-width: 10px;
+            border-radius: 15px;
+            padding: 3px;
+            background-color: purple;
+        }
+        
+        .meta-text{
+            font-size: 14px;
+        }
+        .alt-text{
+            font-size: 11px;
+        }
+    }
 }

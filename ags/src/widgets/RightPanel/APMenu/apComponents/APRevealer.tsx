@@ -1,5 +1,5 @@
 import { connectToWifi, disconnectFromWifi } from "../support/apUtils";
-import { apPassword, currentSSID } from "../../support/panelVars";
+import { apPassword, currentSSID, selectedAP } from "../../support/panelVars";
 
 export function APReavealer(ssid: string): JSX.Element{
 
@@ -21,9 +21,14 @@ export function APReavealer(ssid: string): JSX.Element{
                 ssid != currentSSID.get() ? 
                 <button
                 name={ssid}
-                onClick={self => connectToWifi(self.name,
-                    false, apPassword.get()
-                )}
+                onClick={async (self) => {
+                    const status: Promise<boolean> = connectToWifi(
+                        self.name,false, apPassword.get());
+                    // reset the selectedAP to remove the revealer in AP menu.
+                    if(await status){
+                        selectedAP.set('');
+                    }
+                }}
                 className={"ap-wifi-button"}>
                     Connect
                 </button> :

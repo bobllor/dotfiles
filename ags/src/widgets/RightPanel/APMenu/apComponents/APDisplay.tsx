@@ -3,7 +3,9 @@ import { getIcon } from "../support/apUtils"
 import { currentSSID } from "../../support/panelVars";
 import { Gtk } from "astal/gtk3";
 
-export default function APDisplay(ssid: string, strBind: Binding<number>, flag: number): JSX.Element{
+export default function APDisplay(
+    ssid: string, strBind: Binding<number>, flag: number,
+    wifiStateText: string): JSX.Element{
     return (
         <>  
             <box
@@ -19,7 +21,7 @@ export default function APDisplay(ssid: string, strBind: Binding<number>, flag: 
             orientation={1}>
                 <label halign={Gtk.Align.START}>{ssid}</label>
                 {ssid == currentSSID.get() && 
-                <label halign={Gtk.Align.START}>Connected</label>}
+                <label halign={Gtk.Align.START}>{wifiStateText}</label>}
             </box>
         </>
     )

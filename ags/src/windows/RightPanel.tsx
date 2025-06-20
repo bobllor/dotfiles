@@ -5,6 +5,7 @@ import PanelButtons from "../widgets/RightPanel/PanelButtons";
 import { anchor } from "../../globals/vars";
 import { displayPanel } from "../widgets/RightPanel/support/panelVars";
 import Notifications from "./Notification";
+import BluetoothMenu from "../widgets/RightPanel/BTMenu/BluetoothMenu";
 
 export default function RightPanel(monitor: Gdk.Monitor, showMenu: Variable<boolean>): JSX.Element{
   return (
@@ -22,6 +23,7 @@ export default function RightPanel(monitor: Gdk.Monitor, showMenu: Variable<bool
               <stack
               visibleChildName={bind(displayPanel).as(name => name)}>
                 <AccessPoints />
+                <BluetoothMenu />
               </stack>
           </box>
         </window>

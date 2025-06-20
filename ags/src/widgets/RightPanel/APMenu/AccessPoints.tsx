@@ -4,10 +4,12 @@ import { Gtk, Widget } from "astal/gtk3";
 import { currentSSID, selectedAP, authFailed, displayPanel } from "../support/panelVars";
 import APDisplay from "./apComponents/APDisplay";
 import { APReavealer } from "./apComponents/APRevealer";
+import { conText } from "./support/apVars";
 
 const NETWORK = Network.get_default();
 
 const firstScan = Variable<boolean>(true);
+const conStatus: Variable<string> = Variable('');
 
 function APs(): JSX.Element{
     /** Reveal the selected network option revealer. */
@@ -28,8 +30,10 @@ function APs(): JSX.Element{
         (wifi, con, selectedButton) => {
             const ssidSet = new Set();
 
+            conStatus.set(conText.get(con) ?? '');
+
             // handles updating the network.
-            if(con == 1 || con == 0){
+            if(con <= 1){
                 currentSSID.set('None');
             }else{
                 currentSSID.set(wifi.ssid);
@@ -73,7 +77,9 @@ function APs(): JSX.Element{
                                     <box
                                     className={'ap-info'}
                                     spacing={2}>
-                                        {APDisplay(ap.ssid, bind(ap, 'strength'), ap.flags)}
+                                        {APDisplay(
+                                            ap.ssid, bind(ap, 'strength'), ap.flags, conStatus.get()
+                                        )}
                                     </box>
                                 </button>
                                 <revealer

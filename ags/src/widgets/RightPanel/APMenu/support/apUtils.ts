@@ -20,7 +20,7 @@ export async function disconnectFromWifi(): Promise<void>{
 /** Connects to a chosen wireless network. */
 export async function connectToWifi(chosenAP: string, 
     oneClickConnect: boolean = false, 
-    pw: string = apPassword.get()): Promise<void>{
+    pw: string = apPassword.get()): Promise<boolean>{
     const cachedAPs = new Set(exec('nmcli -f NAME con show').split("\n").map(ap => {
             let formattedAP = ap.trim();
             
@@ -37,7 +37,7 @@ export async function connectToWifi(chosenAP: string,
         try{
             await execAsync(`nmcli con up "${chosenAP}"`);
 
-            return;
+            return true;
         }catch(error){
             // indicates a bad entry in the cached AP, delete and reset
             // NOTE: i think this is only related to a bad password, so it can continue ahead.
@@ -58,6 +58,8 @@ export async function connectToWifi(chosenAP: string,
 
     try{
         await connect(pw);
+
+        return true;
     }catch(error){
         print(chosenAP);
         print(error);
@@ -66,7 +68,7 @@ export async function connectToWifi(chosenAP: string,
 
         // final fail, delete the entry.
         exec(`nmcli con delete "${chosenAP}"`);
-        return;
+        return false;
     }
 }
 

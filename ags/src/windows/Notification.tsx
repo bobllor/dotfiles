@@ -10,7 +10,7 @@ export default function Notification(monitor: Gdk.Monitor): JSX.Element{
     return (
         <>
             <window
-            monitor={monitor}
+            gdkmonitor={monitor}
             anchor={anchor.TOP | anchor.RIGHT}>
                 <box
                 vertical>
